@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
@@ -10,6 +11,14 @@ from svs_label_ocr.line_images import crop_and_upscale_line
 from svs_label_ocr.ocr import OCRProvider, recognize_line_with_fallback
 from svs_label_ocr.preprocess import prepare_label_image
 from svs_label_ocr.segmentation import find_text_line_spans
+
+
+@dataclass
+class ProcessedSlideResult:
+    recognized_text: str
+    recognized_lines: list[str]
+    label_image: Image.Image
+    wsi_thumbnail: Image.Image
 
 
 def join_recognized_lines(lines: list[str]) -> str:
@@ -27,7 +36,7 @@ def process_label_image(
     max_merge_gap: int = 2,
     crop_margin: int = 2,
     upscale_factor: int = 3,
-) -> str:
+) -> tuple[str, list[str]]:
     prepared = prepare_label_image(label_image)
     spans = find_text_line_spans(
         prepared.binary,
@@ -52,7 +61,7 @@ def process_label_image(
             )
         )
 
-    return join_recognized_lines(recognized_lines)
+    return join_recognized_lines(recognized_lines), recognized_lines
 
 
 def open_slide(path: Path):
@@ -67,20 +76,32 @@ def open_slide(path: Path):
     return openslide.OpenSlide(str(path))
 
 
+def extract_wsi_thumbnail(slide, *, max_size: tuple[int, int] = (512, 512)) -> Image.Image:
+    if hasattr(slide, "get_thumbnail"):
+        return slide.get_thumbnail(max_size).convert("RGB")
+    raise ValueError("Slide object does not support thumbnail extraction")
+
+
 def process_svs_file(
     svs_path: Path,
     *,
     local_provider: OCRProvider,
     fallback_provider: Optional[OCRProvider] = None,
     slide_opener=open_slide,
-) -> str:
+) -> ProcessedSlideResult:
     slide = slide_opener(svs_path)
     try:
         label_image = extract_label_image(slide=slide)
-        return process_label_image(
+        recognized_text, recognized_lines = process_label_image(
             label_image,
             local_provider=local_provider,
             fallback_provider=fallback_provider,
+        )
+        return ProcessedSlideResult(
+            recognized_text=recognized_text,
+            recognized_lines=recognized_lines,
+            label_image=label_image,
+            wsi_thumbnail=extract_wsi_thumbnail(slide),
         )
     finally:
         close = getattr(slide, "close", None)

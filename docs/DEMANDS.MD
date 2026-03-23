@@ -2,7 +2,7 @@
 
 ## Version
 
-`v0.3.3`
+`v0.4.0`
 
 ## Additional Documentation Requirement
 
@@ -26,9 +26,10 @@
 
 ## Project Goal
 
-Build a script that recursively scans a root directory, reads the `label` associated image from each `.svs` file, recognizes handwritten text on the label, and writes a CSV with:
+Build a script that recursively scans a root directory, reads the `label` associated image from each `.svs` file, recognizes handwritten text on the label, writes a CSV, and generates a preview summary image.
 
 - `svs_filename`
+- `slide_path`
 - `recognized_text`
 
 `recognized_text` must preserve the top-to-bottom spatial line order from the label image, using newline characters between lines.
@@ -43,7 +44,9 @@ Build a script that recursively scans a root directory, reads the `label` associ
 
 - A CSV file
 - Column 1: `svs_filename`
-- Column 2: `recognized_text`
+- Column 2: `slide_path`
+- Column 3: `recognized_text`
+- A preview summary PNG image
 
 ## Required End-To-End Pipeline
 
@@ -53,6 +56,7 @@ Build a script that recursively scans a root directory, reads the `label` associ
 4. Split the label image into text lines
 5. Run OCR line by line
 6. Write one CSV row per SVS file
+7. Render a preview summary image for the first successful slides
 
 ## Functional Requirements
 
@@ -161,8 +165,19 @@ Do not apply strong rule-based correction or format-specific rewriting in the fi
 ### 10. CSV Rules
 
 - Store only the SVS file name, not the full path, in `svs_filename`
+- Store `slide_path` as the path relative to the input root directory
 - Preserve newline characters inside `recognized_text`
 - Ensure CSV writing handles embedded newlines correctly
+
+### 11. Preview Summary Image Rules
+
+- Output a single `4096x4096` image in the first implementation
+- Default to the first 5 successfully processed slides in stable processing order
+- Each slide row must have 3 columns:
+  - WSI thumbnail
+  - label thumbnail
+  - recognized text
+- The preview text must preserve the same OCR line order and line boundaries as the CSV `recognized_text`
 
 ## Error Handling Requirements
 
@@ -204,9 +219,11 @@ Do not apply strong rule-based correction or format-specific rewriting in the fi
 - Given a directory with `.svs` files, the script finds them recursively and processes them in stable order
 - For each SVS with a valid label image, the script outputs a CSV row
 - The CSV contains `svs_filename` and `recognized_text`
+- The CSV also contains `slide_path` relative to the input root directory
 - `recognized_text` preserves line order from top to bottom
 - A broken or unsupported SVS does not stop the whole batch
 - When local OCR output is clearly poor, fallback OCR can be triggered
+- The preview PNG is generated with the expected default size and ordering rules
 
 ## Operational Notes
 
@@ -216,6 +233,7 @@ Do not apply strong rule-based correction or format-specific rewriting in the fi
 - `openslide-python` requires the system OpenSlide library in addition to the Python package; if the dylib is missing in a fresh environment, `pip install openslide-bin` is the quickest fix on macOS
 - `pytesseract` requires the system `tesseract` binary to be installed and visible in `PATH`
 - If OpenAI fallback is enabled, `OPENAI_API_KEY` must be present in the environment
+- By default, preview output is written beside the CSV using the same stem plus `.preview.png`
 
 ## Initial Usage Example
 
@@ -227,6 +245,16 @@ pip install -e .
 svs-label-ocr \
   --input-dir /path/to/svs_root \
   --output-csv /path/to/output.csv
+```
+
+To set a custom preview output path:
+
+```bash
+svs-label-ocr \
+  --input-dir /path/to/svs_root \
+  --output-csv /path/to/output.csv \
+  --preview-image /path/to/output.preview.png \
+  --preview-rows 5
 ```
 
 To disable OpenAI fallback and use only the local OCR path:

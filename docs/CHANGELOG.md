@@ -1,3 +1,35 @@
+v0.4.0 - 2026-03-23
+用户需求
+用户要求把此前确认过的两个设计需求真正实现到代码中：CSV 增加相对输入目录的 `slide_path` 列，并生成包含 WSI 缩略图、label 缩略图和分行识别文本的预览总图
+已做改动
+版本号升级到 v0.4.0
+新增 `src/svs_label_ocr/preview.py`，实现 `4096x4096` 预览总图渲染、缩略图布局和按 OCR 行边界绘制文本
+更新 `src/svs_label_ocr/pipeline.py`，让单个 slide 处理返回结构化结果，包括识别文本、识别行、label 图像和 WSI 缩略图
+更新 `src/svs_label_ocr/export.py`，让 CSV 输出增加 `slide_path` 列，并在批处理完成后生成预览总图
+更新 `src/svs_label_ocr/cli.py`，新增 `--preview-image` 和 `--preview-rows` 参数，并默认在 CSV 旁边输出预览图
+更新 `tests/test_export.py`、`tests/test_integration_smoke.py`、`tests/test_cli.py`，覆盖新 CSV 列、预览输出和参数校验
+新增 `tests/test_preview.py`，覆盖预览图尺寸和候选样本数量规则
+新增 `docs/plans/2026-03-23-preview-slide-summary-implementation.md`，记录本轮实现计划
+更新 `README.md`、`docs/DEMANDS.MD`、`docs/CHANGELOG.md`，同步真实实现行为和用法
+影响文件
+README.md
+pyproject.toml
+src/svs_label_ocr/__init__.py
+src/svs_label_ocr/cli.py
+src/svs_label_ocr/export.py
+src/svs_label_ocr/pipeline.py
+src/svs_label_ocr/preview.py
+tests/test_cli.py
+tests/test_export.py
+tests/test_integration_smoke.py
+tests/test_preview.py
+docs/DEMANDS.MD
+docs/CHANGELOG.md
+docs/plans/2026-03-23-preview-slide-summary-implementation.md
+验证结果
+.venv/bin/python -m pytest -v
+git diff --check
+
 v0.3.3 - 2026-03-23
 用户需求
 用户要求在现有 OCR 批处理工具上新增两项输出能力：CSV 增加相对输入目录的 `slide_path` 列，并生成一个包含 WSI 缩略图、label 缩略图和分行识别文本的预览总图；当前阶段先完成设计确认与文档落地

@@ -9,9 +9,15 @@ from svs_label_ocr.export import process_batch
 class DummySlide:
     def __init__(self, label):
         self.associated_images = {"label": label}
+        self._thumbnail = Image.new("RGB", (180, 120), "lightgray")
 
     def close(self):
         pass
+
+    def get_thumbnail(self, size):
+        thumbnail = self._thumbnail.copy()
+        thumbnail.thumbnail(size)
+        return thumbnail
 
 
 class AlwaysSuspiciousProvider:
@@ -40,9 +46,11 @@ def build_label_image() -> Image.Image:
 
 def test_process_batch_smoke_runs_end_to_end_with_fallback(tmp_path: Path):
     input_dir = tmp_path / "slides"
-    input_dir.mkdir()
-    (input_dir / "case1.svs").write_text("")
+    nested = input_dir / "nested"
+    nested.mkdir(parents=True)
+    (nested / "case1.svs").write_text("")
     output_csv = tmp_path / "result.csv"
+    output_preview = tmp_path / "result.preview.png"
 
     rows = process_batch(
         input_dir,
@@ -50,11 +58,20 @@ def test_process_batch_smoke_runs_end_to_end_with_fallback(tmp_path: Path):
         local_provider=AlwaysSuspiciousProvider(),
         fallback_provider=SequenceProvider(["Top", "Bottom"]),
         slide_opener=lambda path: DummySlide(build_label_image()),
+        preview_image=output_preview,
     )
 
-    assert rows == [{"svs_filename": "case1.svs", "recognized_text": "Top\nBottom"}]
+    assert rows == [
+        {
+            "svs_filename": "case1.svs",
+            "slide_path": "nested/case1.svs",
+            "recognized_text": "Top\nBottom",
+        }
+    ]
 
     with output_csv.open(newline="", encoding="utf-8") as handle:
         data = list(csv.DictReader(handle))
 
+    assert data[0]["slide_path"] == "nested/case1.svs"
     assert data[0]["recognized_text"] == "Top\nBottom"
+    assert output_preview.exists()
