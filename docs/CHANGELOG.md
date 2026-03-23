@@ -1,3 +1,18 @@
+v0.3.3 - 2026-03-23
+用户需求
+用户要求在现有 OCR 批处理工具上新增两项输出能力：CSV 增加相对输入目录的 `slide_path` 列，并生成一个包含 WSI 缩略图、label 缩略图和分行识别文本的预览总图；当前阶段先完成设计确认与文档落地
+已做改动
+版本号升级到 v0.3.3
+更新 `docs/DEMANDS.MD`，补充 `slide_path` 与预览总图的确认需求
+新增 `docs/plans/2026-03-23-preview-slide-summary-design.md`，记录已确认的产品决策、数据结构方案、CLI 设计、渲染规则、错误边界与测试策略
+影响文件
+docs/DEMANDS.MD
+docs/CHANGELOG.md
+docs/plans/2026-03-23-preview-slide-summary-design.md
+验证结果
+git diff --check
+人工核对设计文档与已确认需求一致
+
 v0.3.2 - 2026-03-23
 用户需求
 用户要求在现有 README 基础上，补充使用 Conda 创建环境、安装依赖和运行测试/程序的说明

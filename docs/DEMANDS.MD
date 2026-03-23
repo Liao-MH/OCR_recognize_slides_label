@@ -2,7 +2,7 @@
 
 ## Version
 
-`v0.3.2`
+`v0.3.3`
 
 ## Additional Documentation Requirement
 
@@ -10,6 +10,19 @@
 - The README should let a new user understand the tool's purpose, dependencies, installation, CLI usage, output format, and current scope without reading the source code first
 - The README should match the actual implemented behavior of the repository instead of describing hypothetical future features
 - The README should also include Conda-based environment setup and usage instructions
+
+## Newly Confirmed Feature Requirement
+
+- The CSV output must add a `slide_path` column
+- `slide_path` must be relative to `--input-dir`
+- The tool must also generate a preview summary image
+- The preview summary image must be a single `4096x4096` image in the first implementation
+- The preview image must contain 3 columns per slide row:
+  - WSI thumbnail
+  - label thumbnail
+  - recognized label text
+- The preview image must default to showing the first 5 successfully processed slides in stable processing order
+- The preview text column must preserve the same line ordering and line boundaries as the CSV `recognized_text`
 
 ## Project Goal
 
