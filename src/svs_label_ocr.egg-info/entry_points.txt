@@ -1,2 +1,0 @@
-[console_scripts]
-svs-label-ocr = svs_label_ocr.cli:main
