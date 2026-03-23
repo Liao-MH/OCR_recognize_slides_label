@@ -2,7 +2,14 @@
 
 ## Version
 
-`v0.1.0`
+`v0.3.2`
+
+## Additional Documentation Requirement
+
+- Add a root `README.md`
+- The README should let a new user understand the tool's purpose, dependencies, installation, CLI usage, output format, and current scope without reading the source code first
+- The README should match the actual implemented behavior of the repository instead of describing hypothetical future features
+- The README should also include Conda-based environment setup and usage instructions
 
 ## Project Goal
 
@@ -187,3 +194,33 @@ Do not apply strong rule-based correction or format-specific rewriting in the fi
 - `recognized_text` preserves line order from top to bottom
 - A broken or unsupported SVS does not stop the whole batch
 - When local OCR output is clearly poor, fallback OCR can be triggered
+
+## Operational Notes
+
+- Python package entrypoint: `svs-label-ocr`
+- Local OCR path uses `pytesseract` as the first implementation's local provider
+- OpenAI fallback OCR is triggered only when the local result is suspicious or the local provider raises an exception
+- `openslide-python` requires the system OpenSlide library in addition to the Python package; if the dylib is missing in a fresh environment, `pip install openslide-bin` is the quickest fix on macOS
+- `pytesseract` requires the system `tesseract` binary to be installed and visible in `PATH`
+- If OpenAI fallback is enabled, `OPENAI_API_KEY` must be present in the environment
+
+## Initial Usage Example
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
+
+svs-label-ocr \
+  --input-dir /path/to/svs_root \
+  --output-csv /path/to/output.csv
+```
+
+To disable OpenAI fallback and use only the local OCR path:
+
+```bash
+svs-label-ocr \
+  --input-dir /path/to/svs_root \
+  --output-csv /path/to/output.csv \
+  --disable-openai-fallback
+```
