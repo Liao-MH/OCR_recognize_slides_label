@@ -45,8 +45,10 @@
   - `openslide-python`
   - 系统 OpenSlide 动态库
 - OpenAI fallback 依赖：
-  - `openai`
-  - 运行时显式传入 `--openai-api-key`
+- `openai`
+- 运行时显式传入 `--openai-api-key`
+
+OpenAI fallback 会把裁剪后的行图直接作为图片输入发送给 Responses API，因此 `gpt-4.1` 这类视觉模型可以直接用于手写行图识别。
 
 在 macOS 上，如果安装了 `openslide-python` 但仍提示缺少 OpenSlide 动态库，可优先尝试：
 
@@ -144,7 +146,7 @@ svs-label-ocr \
 - `--tesseract-language`: 本地 tesseract 语言，默认 `eng`
 - `--disable-openai-fallback`: 禁用 OpenAI fallback
 - `--openai-api-key`: OpenAI fallback 使用的显式 API key；未禁用 fallback 时必填
-- `--openai-model`: fallback 使用的 OpenAI 模型，默认 `gpt-5`
+- `--openai-model`: fallback 使用的 OpenAI 模型，默认 `gpt-5`；视觉模型如 `gpt-4.1` 也可直接使用
 - `--openai-prompt`: fallback 提示词，默认要求模型只返回图片中的手写文本
 - `--preview-image`: 预览总图输出路径；不传时默认使用 `output_csv` 同目录下的 `*.preview.png`
 - `--preview-rows`: 预览图显示的成功样本行数，默认 `5`

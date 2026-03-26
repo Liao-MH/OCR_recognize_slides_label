@@ -2,7 +2,7 @@
 
 ## Version
 
-`v1.2.0`
+`v1.3.0`
 
 ## Additional Documentation Requirement
 
@@ -63,6 +63,13 @@
   - exception type
   - exception message
 - Full traceback details should remain in the `.run.log` file instead of being fully printed to the terminal
+
+## Newly Confirmed OpenAI Image Input Requirement
+
+- OpenAI fallback OCR must send cropped line images through the Responses API image-input path
+- The fallback implementation must not send `.png` line images as `input_file`
+- The fix must support `gpt-4.1` and other vision-capable models through one unified image-input flow
+- The existing CLI surface should remain unchanged
 
 ## Project Goal
 

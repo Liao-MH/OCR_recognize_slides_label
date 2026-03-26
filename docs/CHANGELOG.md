@@ -1,3 +1,29 @@
+v1.3.0 - 2026-03-26
+用户需求
+用户在将 `--openai-model` 设为 `gpt-4.1` 时遇到 `.png` 被当成 `input_file` 发送而导致的 `400 invalid_request_error`，要求修复 OpenAI fallback，使视觉模型通过正确的图片输入路径工作
+已做改动
+版本号升级到 v1.3.0
+新增 `docs/plans/2026-03-26-openai-image-input-design.md`，记录统一使用图片输入路径的设计决策
+新增 `docs/plans/2026-03-26-openai-image-input-implementation.md`，记录本轮实现计划
+更新 `src/svs_label_ocr/ocr.py`，移除临时 PNG 文件上传与 `input_file` 路径，改为将行图编码为 PNG data URL 并通过 Responses API `input_image` 发送
+更新 `tests/test_ocr_provider_config.py`，覆盖 OpenAI fallback 请求中使用 `input_image` 的行为
+更新 `README.md` 与 `docs/DEMANDS.MD`，同步说明 OpenAI fallback 现在直接发送图片输入，并兼容 `gpt-4.1`
+更新 `pyproject.toml` 与 `src/svs_label_ocr/__init__.py`，同步版本号
+影响文件
+README.md
+pyproject.toml
+src/svs_label_ocr/__init__.py
+src/svs_label_ocr/ocr.py
+tests/test_ocr_provider_config.py
+docs/DEMANDS.MD
+docs/CHANGELOG.md
+docs/plans/2026-03-26-openai-image-input-design.md
+docs/plans/2026-03-26-openai-image-input-implementation.md
+验证结果
+.venv/bin/python -m pytest tests/test_ocr_provider_config.py -v
+.venv/bin/python -m pytest -v
+git diff --check
+
 v1.2.0 - 2026-03-24
 用户需求
 用户要求在现有 `.run.log` 正常写入和保存的基础上，让终端窗口也能实时显示批处理进度，并在某个 slide 失败时立即看到失败信息，而不是只在最后看到汇总

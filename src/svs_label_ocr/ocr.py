@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from tempfile import NamedTemporaryFile
+import base64
+from io import BytesIO
 from typing import Optional, Protocol
 
 from PIL import Image
@@ -85,25 +86,25 @@ class OpenAIFallbackOCRProvider:
             self._client = OpenAI(api_key=self.api_key)
         return self._client
 
-    def recognize_line(self, image: Image.Image) -> str:
-        # The official Responses API supports uploaded files as input. We upload
-        # the cropped line image and prompt the model to return only the text.
-        with NamedTemporaryFile(suffix=".png") as handle:  # pragma: no cover - network path
-            image.save(handle.name, format="PNG")
-            with open(handle.name, "rb") as image_handle:
-                uploaded_file = self.client.files.create(
-                    file=image_handle,
-                    purpose="user_data",
-                )
+    def _encode_image_data_url(self, image: Image.Image) -> str:
+        # The fallback always sends a PNG line image directly to the Responses
+        # API, so vision-capable models such as gpt-4.1 receive a true image
+        # input instead of an unsupported document-style file input.
+        buffer = BytesIO()
+        image.save(buffer, format="PNG")
+        encoded = base64.b64encode(buffer.getvalue()).decode("ascii")
+        return f"data:image/png;base64,{encoded}"
 
+    def recognize_line(self, image: Image.Image) -> str:
+        image_url = self._encode_image_data_url(image)
         response = self.client.responses.create(
             model=self.model,
             input=[
                 {
                     "role": "user",
                     "content": [
-                        {"type": "input_file", "file_id": uploaded_file.id},
                         {"type": "input_text", "text": self.prompt},
+                        {"type": "input_image", "image_url": image_url},
                     ],
                 }
             ],
