@@ -48,7 +48,7 @@
 - `openai`
 - 运行时显式传入 `--openai-api-key`
 
-OpenAI fallback 会把裁剪后的行图直接作为图片输入发送给 Responses API，因此 `gpt-4.1` 这类视觉模型可以直接用于手写行图识别。
+OpenAI fallback 会把裁剪后的行图直接作为图片输入发送给 Responses API，因此 `gpt-4.1` 这类视觉模型可以直接用于手写行图识别。默认提示词还会明确告诉模型：每一行前 6 个字符应识别为数字；如果前 6 位模糊，优先判断为最可能的数字而不是字母。
 
 在 macOS 上，如果安装了 `openslide-python` 但仍提示缺少 OpenSlide 动态库，可优先尝试：
 

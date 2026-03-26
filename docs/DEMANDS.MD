@@ -2,7 +2,7 @@
 
 ## Version
 
-`v1.3.0`
+`v1.4.0`
 
 ## Additional Documentation Requirement
 
@@ -70,6 +70,12 @@
 - The fallback implementation must not send `.png` line images as `input_file`
 - The fix must support `gpt-4.1` and other vision-capable models through one unified image-input flow
 - The existing CLI surface should remain unchanged
+
+## Newly Confirmed OpenAI Prompt Constraint Requirement
+
+- The OpenAI fallback prompt must explicitly tell the model that each handwritten line begins with 6 digits
+- The prompt must explicitly bias the model toward outputting digits rather than letters for the first 6 characters
+- This constraint should be applied at prompt time instead of through post-processing correction
 
 ## Project Goal
 

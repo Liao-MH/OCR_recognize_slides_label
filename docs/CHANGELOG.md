@@ -1,3 +1,22 @@
+v1.4.0 - 2026-03-26
+用户需求
+用户要求不要增加后处理，而是在把图像传给 GPT 时通过提示词明确约束：每一行识别结果的前 6 个字符必须是数字，并在模糊时优先输出数字而不是字母
+已做改动
+版本号升级到 v1.4.0
+更新 `src/svs_label_ocr/ocr.py`，增强 OpenAI fallback 默认提示词，明确要求每行前 6 位必须为数字，并在模糊时优先输出数字
+更新 `README.md` 与 `docs/DEMANDS.MD`，同步记录新的 GPT 提示词约束
+更新 `pyproject.toml` 与 `src/svs_label_ocr/__init__.py`，同步版本号
+影响文件
+README.md
+pyproject.toml
+src/svs_label_ocr/__init__.py
+src/svs_label_ocr/ocr.py
+docs/DEMANDS.MD
+docs/CHANGELOG.md
+验证结果
+.venv/bin/python -m pytest -v
+git diff --check
+
 v1.3.0 - 2026-03-26
 用户需求
 用户在将 `--openai-model` 设为 `gpt-4.1` 时遇到 `.png` 被当成 `input_file` 发送而导致的 `400 invalid_request_error`，要求修复 OpenAI fallback，使视觉模型通过正确的图片输入路径工作

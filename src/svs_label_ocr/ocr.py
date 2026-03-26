@@ -9,7 +9,9 @@ from PIL import Image
 
 DEFAULT_OPENAI_PROMPT = (
     "Read only the handwritten text in this image and return only that text. "
-    "Do not add explanations."
+    "Each handwritten line begins with exactly 6 digits, so the first 6 characters "
+    "must be numeric. If any of the first 6 characters are ambiguous, prefer the "
+    "most likely digits rather than letters. Do not add explanations."
 )
 
 
