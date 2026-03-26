@@ -1,0 +1,7 @@
+svs-label-ocr \
+  --input-dir /home/muhengliao/LMH2025/Data/raw_data/Pancancer_Fanhong \
+  --output-csv output/output.csv \
+  --openai-api-key  \
+  --preview-image output/custom.preview.png \
+  --preview-rows 5 
+

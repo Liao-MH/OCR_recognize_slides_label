@@ -1,0 +1,80 @@
+import csv
+from pathlib import Path
+
+from PIL import Image, ImageDraw
+
+from svs_label_ocr.export import process_batch
+
+
+class DummySlide:
+    def __init__(self, label):
+        self.associated_images = {"label": label}
+        self._thumbnail = Image.new("RGB", (180, 120), "lightgray")
+
+    def close(self):
+        pass
+
+    def get_thumbnail(self, size):
+        thumbnail = self._thumbnail.copy()
+        thumbnail.thumbnail(size)
+        return thumbnail
+
+
+class AlwaysSuspiciousProvider:
+    def recognize_line(self, image):
+        return ""
+
+
+class SequenceProvider:
+    def __init__(self, results):
+        self.results = list(results)
+        self.index = 0
+
+    def recognize_line(self, image):
+        result = self.results[self.index]
+        self.index += 1
+        return result
+
+
+def build_label_image() -> Image.Image:
+    image = Image.new("RGB", (120, 80), "white")
+    draw = ImageDraw.Draw(image)
+    draw.rectangle((15, 10, 95, 18), fill="black")
+    draw.rectangle((20, 42, 85, 50), fill="black")
+    return image
+
+
+def test_process_batch_smoke_runs_end_to_end_with_fallback(tmp_path: Path):
+    input_dir = tmp_path / "slides"
+    nested = input_dir / "nested"
+    nested.mkdir(parents=True)
+    (nested / "case1.svs").write_text("")
+    output_csv = tmp_path / "result.csv"
+    output_preview = tmp_path / "result.preview.png"
+
+    result = process_batch(
+        input_dir,
+        output_csv,
+        local_provider=AlwaysSuspiciousProvider(),
+        fallback_provider=SequenceProvider(["Top", "Bottom"]),
+        slide_opener=lambda path: DummySlide(build_label_image()),
+        preview_image=output_preview,
+    )
+
+    assert result.rows == [
+        {
+            "svs_filename": "case1.svs",
+            "slide_path": "nested/case1.svs",
+            "recognized_text": "Top\nBottom",
+        }
+    ]
+    assert result.total_svs == 1
+    assert result.success_count == 1
+    assert result.failure_count == 0
+
+    with output_csv.open(newline="", encoding="utf-8") as handle:
+        data = list(csv.DictReader(handle))
+
+    assert data[0]["slide_path"] == "nested/case1.svs"
+    assert data[0]["recognized_text"] == "Top\nBottom"
+    assert output_preview.exists()

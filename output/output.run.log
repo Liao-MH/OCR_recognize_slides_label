@@ -1,0 +1,247 @@
+2026-03-24 14:22:38,131 | INFO | Batch started: input_dir=/home/muhengliao/LMH2025/Data/raw_data/Pancancer_Fanhong output_csv=output/output.csv preview_image=output/custom.preview.png preview_rows=5
+2026-03-24 14:22:38,133 | INFO | Discovered 406 SVS files
+2026-03-24 14:22:38,133 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291288_.svs svs_filename=291288_.svs
+2026-03-24 14:22:38,973 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291288_.svs svs_filename=291288_.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:38,973 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291290_.svs svs_filename=291290_.svs
+2026-03-24 14:22:39,560 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291290_.svs svs_filename=291290_.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:39,560 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291292_.svs svs_filename=291292_.svs
+2026-03-24 14:22:40,126 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291292_.svs svs_filename=291292_.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:40,126 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291293_.svs svs_filename=291293_.svs
+2026-03-24 14:22:40,726 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291293_.svs svs_filename=291293_.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:40,727 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291295_.svs svs_filename=291295_.svs
+2026-03-24 14:22:41,328 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291295_.svs svs_filename=291295_.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:41,328 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291296_.svs svs_filename=291296_.svs
+2026-03-24 14:22:41,923 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291296_.svs svs_filename=291296_.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:41,923 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291297.svs svs_filename=291297.svs
+2026-03-24 14:22:42,324 | INFO | Processed slide successfully: slide_path=Breast_cancer_N=137/291297.svs svs_filename=291297.svs recognized_lines=1 recognized_chars=2
+2026-03-24 14:22:42,324 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291298_.svs svs_filename=291298_.svs
+2026-03-24 14:22:42,884 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291298_.svs svs_filename=291298_.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:42,884 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291299_.svs svs_filename=291299_.svs
+2026-03-24 14:22:43,446 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291299_.svs svs_filename=291299_.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:43,446 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291300.svs svs_filename=291300.svs
+2026-03-24 14:22:43,821 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291300.svs svs_filename=291300.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:43,822 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291301_.svs svs_filename=291301_.svs
+2026-03-24 14:22:44,321 | INFO | Processed slide successfully: slide_path=Breast_cancer_N=137/291301_.svs svs_filename=291301_.svs recognized_lines=1 recognized_chars=3
+2026-03-24 14:22:44,321 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291302.svs svs_filename=291302.svs
+2026-03-24 14:22:44,724 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291302.svs svs_filename=291302.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:44,724 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291303_.svs svs_filename=291303_.svs
+2026-03-24 14:22:45,271 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291303_.svs svs_filename=291303_.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:45,272 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291304.svs svs_filename=291304.svs
+2026-03-24 14:22:45,729 | ERROR | Failed to process slide: slide_path=Breast_cancer_N=137/291304.svs svs_filename=291304.svs error_type=PermissionDeniedError error=Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+Traceback (most recent call last):
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/export.py", line 131, in process_batch
+    result = process_svs_file(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 95, in process_svs_file
+    recognized_text, recognized_lines = process_label_image(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/pipeline.py", line 57, in process_label_image
+    recognize_line_with_fallback(
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 128, in recognize_line_with_fallback
+    return normalize_ocr_text(fallback_provider.recognize_line(image))
+  File "/home/muhengliao/LMH2025/Project/OCR_recognize_slides_label/OCR_recognize_slides_label/src/svs_label_ocr/ocr.py", line 94, in recognize_line
+    uploaded_file = self.client.files.create(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/resources/files.py", line 131, in create
+    return self._post(
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/home/muhengliao/miniconda3/envs/svs-label-ocr/lib/python3.9/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-03-24 14:22:45,729 | INFO | Processing slide: slide_path=Breast_cancer_N=137/291305_.svs svs_filename=291305_.svs
